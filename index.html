@@ -8,6 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Password Protection Overlay -->
+    <div id="password-overlay" class="password-overlay">
+        <div class="password-container">
+            <div class="password-header">
+                <h2>America's AI Action Plan</h2>
+                <p>Access Required</p>
+            </div>
+            <div class="password-form">
+                <input type="password" id="password-input" placeholder="Enter password" autocomplete="off">
+                <button id="login-btn" onclick="checkPassword()">Access</button>
+                <div id="error-message" class="error-message"></div>
+            </div>
+            <p class="unofficial-notice">Unofficial Site</p>
+        </div>
+    </div>
+
+    <div id="main-content" class="main-content" style="display: none;">
     <header>
         <div class="header-content">
             <h1>America's AI Action Plan</h1>
@@ -150,9 +167,48 @@
             <p>Unofficial site - see <a href="https://ai.gov" target="_blank">AI.gov</a> for formal updates</p>
         </div>
     </footer>
+    </div> <!-- End main-content -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="data.js?v=4"></script>
     <script src="script.js?v=4"></script>
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input');
+            const errorMessage = document.getElementById('error-message');
+            const overlay = document.getElementById('password-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            if (passwordInput.value === 'actionplan') {
+                // Store login state
+                sessionStorage.setItem('authenticated', 'true');
+                // Hide overlay and show main content
+                overlay.style.display = 'none';
+                mainContent.style.display = 'block';
+                errorMessage.textContent = '';
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.textContent = 'Incorrect password. Please try again.';
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+        
+        // Check if already authenticated
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                document.getElementById('password-overlay').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }
+        });
+        
+        // Allow Enter key to submit password
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
 </body>
 </html>
