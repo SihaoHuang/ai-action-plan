@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America's AI Action Plan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>America's AI Action Plan</h1>
+            <p class="subtitle">Winning the AI Race</p>
+        </div>
+    </header>
+
+    <section class="preamble">
+        <div class="container">
+            <h2>Executive Overview</h2>
+            <p class="lead-text">
+                The United States is in a race to achieve global dominance in artificial intelligence. Whoever has the largest AI ecosystem will set global AI standards and reap broad economic and military benefits. Just like we won the space race, it is imperative that the United States and its allies win this race.
+            </p>
+            <p>
+                Winning the AI race will usher in a new golden age of human flourishing, economic competitiveness, and national security for the American people. AI will enable Americans to discover new materials, synthesize new chemicals, manufacture new drugs, and develop new methods to harness energy—an industrial revolution. It will enable radically new forms of education, media, and communication—an information revolution. And it will enable altogether new intellectual achievements: unraveling ancient scrolls once thought unreadable, making breakthroughs in scientific and mathematical theory, and creating new kinds of digital and physical art—a renaissance.
+            </p>
+            <p>
+                An industrial revolution, an information revolution, and a renaissance—all at once. This is the potential that AI presents. The opportunity that stands before us is both inspiring and humbling. And it is ours to seize, or to lose.
+            </p>
+            <p>
+                America's AI Action Plan has three pillars: innovation, infrastructure, and international diplomacy and security. This comprehensive framework coordinates <span id="total-recommendations">68</span> strategic actions across <span id="total-agencies">15</span> federal agencies. American workers are central to this vision—AI will complement their work, not replace it, while ensuring our systems remain free from ideological bias and pursue objective truth. The AI race is America's to win, and this Action Plan is our roadmap to victory.
+            </p>
+            
+            <div class="signing-photo">
+                <img src="signing.jpg" alt="President Trump signing executive orders at AI Action Plan event with OSTP Director Michael Kratsios and AI and Crypto Tsar David Sacks" />
+                <p class="photo-caption">President Trump signing executive orders at the AI Action Plan event on July 23, 2025 with OSTP Director Michael Kratsios and AI and Crypto Tsar David Sacks.</p>
+            </div>
+            
+            <p style="text-align: center;">
+                <a href="https://ai.gov" class="cta-button" target="_blank">This is an Unofficial Site: Visit AI.gov for More Information</a>
+            </p>
+        </div>
+    </section>
+
+    <section class="statistics">
+        <div class="container">
+            <h2>Action Plan Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Pillars</div>
+                </div>
+                <div class="stat-card agencies">
+                    <div class="stat-number" id="stat-agencies">12</div>
+                    <div class="stat-label">Participating Agencies</div>
+                </div>
+                <div class="stat-card lead">
+                    <div class="stat-number" id="stat-lead">28</div>
+                    <div class="stat-label">Lead Agency Actions</div>
+                </div>
+                <div class="stat-card support">
+                    <div class="stat-number" id="stat-support">19</div>
+                    <div class="stat-label">Supporting Actions</div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="agencyChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="recommendations">
+        <div class="container">
+            <h2>Recommendations by Agency</h2>
+            <p class="section-hint">Click on recommendations for more details</p>
+            
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search by keyword, title, description, or agency name...">
+                    <button id="clear-search" class="clear-search-btn" style="display: none;">&times;</button>
+                </div>
+                <p class="search-hint">Examples: "Department", "Commerce", "AI compute", "export control"</p>
+            </div>
+            
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h4 class="filter-group-title">Filter by Pillar:</h4>
+                    <div class="agency-filter pillar-filter">
+                        <button class="filter-btn active" data-filter="all" data-filter-type="pillar">Show All</button>
+                        <button class="filter-btn" data-filter="pillar1" data-filter-type="pillar">Pillar I: Accelerate AI Innovation</button>
+                        <button class="filter-btn" data-filter="pillar2" data-filter-type="pillar">Pillar II: Build American AI Infrastructure</button>
+                        <button class="filter-btn" data-filter="pillar3" data-filter-type="pillar">Pillar III: Lead in International AI Diplomacy and Security</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4 class="filter-group-title">Filter by Status:</h4>
+                    <div class="agency-filter status-filter">
+                        <button class="filter-btn active" data-filter="all" data-filter-type="status">Show All</button>
+                        <button class="filter-btn" data-filter="Pending" data-filter-type="status">Pending</button>
+                        <button class="filter-btn" data-filter="PoC established" data-filter-type="status">PoC Established</button>
+                        <button class="filter-btn" data-filter="In progress" data-filter-type="status">In Progress</button>
+                        <button class="filter-btn" data-filter="Completed" data-filter-type="status">Completed</button>
+                    </div>
+                </div>
+            </div>
+            <div id="agencies-container" class="agencies-grid">
+                <!-- Agency cards will be dynamically inserted here -->
+                <div class="loading-message">Loading agencies...</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="recommendation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <section class="agency-completion">
+        <div class="container">
+            <h3>Agency Completion Tracking</h3>
+            <p class="completion-subtitle">Track progress across all federal agencies involved in the AI Action Plan</p>
+            <div id="agency-completion-grid" class="completion-grid">
+                <!-- Agency completion charts will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="status-management">
+        <div class="container">
+            <h3>Status Management</h3>
+            <p class="status-explanation">
+                Your status updates are saved locally in your browser. To share progress with team members or backup your data:
+                <strong>Export</strong> your status data to download a file, then others can <strong>Import</strong> that file to sync progress.
+                Use <strong>Reset</strong> to clear all statuses back to "Pending".
+            </p>
+            <div class="status-controls">
+                <button onclick="exportStatuses()" class="export-btn">Export Status Data</button>
+                <label for="import-file" class="import-btn">Import Status Data</label>
+                <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importStatuses(this.files[0])">
+                <button onclick="if(confirm('This will reset all statuses to Pending. Continue?')) { localStorage.removeItem('aiActionPlanStatuses'); location.reload(); }" class="reset-btn">Reset All Statuses</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Unofficial site - see <a href="https://ai.gov" target="_blank">AI.gov</a> for formal updates</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="data.js?v=4"></script>
+    <script src="script.js?v=4"></script>
+</body>
+</html>
